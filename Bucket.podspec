@@ -36,4 +36,11 @@ Pod::Spec.new do |spec|
     cs.dependency "GCDWebServer/WebSocket"
   end
   
+  ### usbmux
+  ### https://github.com/zhu410289616/KKConnector
+  spec.subspec "PeerTalkServer" do |cs|
+    cs.source_files = "Pod/PeerTalkServer/**/*.{h,m,mm}"
+    cs.dependency "KKConnectorServer"
+  end
+  
 end
