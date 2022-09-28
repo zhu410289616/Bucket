@@ -7,9 +7,14 @@
 
 #import "CCDPeerTalkServer.h"
 #import "CCDLogger.h"
+#import "CCDBucket.h"
 #import <KKConnectorServer/KKConnectorServer.h>
 
-@interface CCDPeerTalkServer () <KKConnectorServerDelegate, CCDLogSubscriber>
+@interface CCDPeerTalkServer ()
+<
+KKConnectorServerDelegate,
+CCDBucketSubscriber
+>
 
 @end
 
@@ -25,12 +30,17 @@
     return sharedInstance;
 }
 
+- (void)dealloc
+{
+    [[CCDBucket sharedInstance] removeObserver:self];
+}
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         [[KKConnectorServer sharedInstance] registerAppID:100 protocolVersion:@"0.0.1" delegate:self];
-        [[CCDLogger sharedInstance] addObserver:self];
+        [[CCDBucket sharedInstance] addObserver:self];
     }
     return self;
 }
@@ -42,11 +52,19 @@
     DDLogInfo(@"header: %@", header);
 }
 
-#pragma mark - CCDLogSubscriber
+#pragma mark - CCDBucketSubscriber
 
-- (void)log:(NSString *)log
+- (void)logWith:(NSString *)tag log:(NSString *)log
 {
-    NSData *body = [log dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *tempStr = [NSString stringWithFormat:@"[%@]%@", tag, log];
+    NSData *body = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
+    [[KKConnectorServer sharedInstance] sendFrameOfType:104 tag:1 withPayload:body];
+}
+
+- (void)trackWith:(NSString *)event params:(NSDictionary *)params
+{
+    NSString *tempStr = [NSString stringWithFormat:@"[%@]%@", event, params];
+    NSData *body = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
     [[KKConnectorServer sharedInstance] sendFrameOfType:104 tag:1 withPayload:body];
 }
 

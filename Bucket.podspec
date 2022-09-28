@@ -14,25 +14,31 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "9.0"
   spec.source       = { :git => "https://github.com/zhu410289616/Bucket.git", :tag => "#{spec.version}" }
   
-  spec.default_subspec = "Logger"
+  spec.default_subspec = "Core"
   
-  spec.subspec "Logger" do |cs|
-    cs.source_files = "Pod/Logger/**/*.{h,m,mm}"
+  spec.subspec "Core" do |cs|
+    cs.source_files = "Pod/Core/**/*.{h,m,mm}"
     cs.dependency "CocoaLumberjack"
   end
   
   spec.subspec "MarsLogger" do |cs|
-    cs.source_files = "Pod/Classes/**/*"
+    cs.source_files = "Pod/MarsLogger/**/*"
     cs.vendored_frameworks = [
-      "Pod/Frameworks/mars.framework"
+      "Pod/MarsLogger/Frameworks/mars.framework"
     ]
     cs.frameworks = "SystemConfiguration", "CoreTelephony"
     cs.libraries = "z", "resolv.9", "stdc++"
   end
   
+  spec.subspec "NSURLProtocol" do |cs|
+    cs.source_files = "Pod/NSURLProtocol/**/*.{h,m,mm}"
+    cs.dependency "Bucket/Core"
+  end
+  
   spec.subspec "DamServer" do |cs|
     cs.source_files = "Pod/DamServer/**/*.{h,m,mm}"
     cs.resource = "Pod/DamServer/**/*.bundle"
+    cs.dependency "Bucket/NSURLProtocol"
     cs.dependency "GCDWebServer/WebSocket"
   end
   

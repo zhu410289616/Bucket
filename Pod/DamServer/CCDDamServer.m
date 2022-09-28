@@ -10,6 +10,7 @@
 #import "CCDDamURLProtocol.h"
 #import "NSURLRequest+CCDDam.h"
 #import "CCDLogger.h"
+#import "CCDBucket.h"
 #import <GCDWebServer/GCDWebServerPrivate.h>
 #import <GCDWebServer/GCDWebSocketServer.h>
 #import <GCDWebServer/GCDWebSocketServerConnection.h>
@@ -40,7 +41,7 @@ NSString * const kCCDDamURLProtocolHandledKey = @"kCCDDamURLProtocolHandledKey";
 <
 GCDWebServerDelegate,
 GCDWebSocketServerTransport,
-CCDLogSubscriber
+CCDBucketSubscriber
 >
 
 @property (nonatomic, assign) BOOL enabled;
@@ -94,17 +95,31 @@ CCDLogSubscriber
 
 - (void)start
 {
-    [[CCDLogger sharedInstance] addObserver:self];
+    [[CCDBucket sharedInstance] addObserver:self];
     [self startWebSocketServer];
 }
 
 - (void)stop
 {
-    [[CCDLogger sharedInstance] removeObserver:self];
+    [[CCDBucket sharedInstance] removeObserver:self];
     [self.webServer stop];
 }
 
 #pragma mark - websocket server
+
+- (NSString *)pathForResource:(NSString *)resource ofType:(NSString *)type inBundle:(NSString *)bundleName
+{
+    NSString *tmpBundleName = bundleName;
+    if (tmpBundleName.length && ![tmpBundleName hasSuffix:@".bundle"]) {
+        tmpBundleName = [NSString stringWithFormat:@"%@.bundle", tmpBundleName];
+    }
+    
+    NSString *mainBundlePath = NSBundle.mainBundle.resourcePath;
+    NSString *localBundlePath = [mainBundlePath stringByAppendingPathComponent:tmpBundleName];
+    NSBundle *localBundle = [NSBundle bundleWithPath:localBundlePath];
+    NSString *path = [localBundle pathForResource:resource ofType:type];
+    return path;
+}
 
 - (void)startWebSocketServer
 {
@@ -188,35 +203,36 @@ CCDLogSubscriber
 #endif
 }
 
-#pragma mark - CCDLogSubscriber
+#pragma mark - CCDBucketSubscriber
 
-- (void)log:(NSString *)log
+- (void)logWith:(NSString *)tag log:(NSString *)log
 {
+    NSString *tempStr = [NSString stringWithFormat:@"[%@]%@", tag, log];
+    
     NSArray<GCDWebSocketServerConnection *> *cons = [self.logConnections copy];
     [cons enumerateObjectsUsingBlock:^(GCDWebSocketServerConnection * _Nonnull connection, NSUInteger idx, BOOL * _Nonnull stop) {
         //log message
         GCDWebSocketMessage echoMessage;
         echoMessage.header.fin = YES;
         echoMessage.header.opcode = GCDWebSocketOpcodeTextFrame;
-        echoMessage.body.payload = [log dataUsingEncoding:NSUTF8StringEncoding];
+        echoMessage.body.payload = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
         [connection sendMessage:echoMessage];
     }];
 }
 
-#pragma mark - util
-
-- (NSString *)pathForResource:(NSString *)resource ofType:(NSString *)type inBundle:(NSString *)bundleName
+- (void)trackWith:(NSString *)event params:(NSDictionary *)params
 {
-    NSString *tmpBundleName = bundleName;
-    if (tmpBundleName.length && ![tmpBundleName hasSuffix:@".bundle"]) {
-        tmpBundleName = [NSString stringWithFormat:@"%@.bundle", tmpBundleName];
-    }
+    NSString *tempStr = [NSString stringWithFormat:@"[%@]%@", event, params];
     
-    NSString *mainBundlePath = NSBundle.mainBundle.resourcePath;
-    NSString *localBundlePath = [mainBundlePath stringByAppendingPathComponent:tmpBundleName];
-    NSBundle *localBundle = [NSBundle bundleWithPath:localBundlePath];
-    NSString *path = [localBundle pathForResource:resource ofType:type];
-    return path;
+    NSArray<GCDWebSocketServerConnection *> *cons = [self.logConnections copy];
+    [cons enumerateObjectsUsingBlock:^(GCDWebSocketServerConnection * _Nonnull connection, NSUInteger idx, BOOL * _Nonnull stop) {
+        //log message
+        GCDWebSocketMessage echoMessage;
+        echoMessage.header.fin = YES;
+        echoMessage.header.opcode = GCDWebSocketOpcodeTextFrame;
+        echoMessage.body.payload = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
+        [connection sendMessage:echoMessage];
+    }];
 }
 
 @end

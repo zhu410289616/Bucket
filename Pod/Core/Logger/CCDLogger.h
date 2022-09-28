@@ -11,28 +11,13 @@
 // Log levels: off, error, warn, info, verbose
 static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 
-@protocol CCDLogSubscriber <NSObject>
+FOUNDATION_EXPORT void CCDLog(NSString *tag, NSString *log);
 
-- (void)log:(NSString *)log;
-
-@end
-
-@protocol CCDLogger <NSObject>
-
-- (void)addObserver:(id<CCDLogSubscriber>)observer;
-- (void)removeObserver:(id<CCDLogSubscriber>)observer;
-
-- (void)log:(NSString *)format, ...;
+@interface CCDLogger : NSObject
 
 @end
 
-@interface CCDLogger : NSObject <CCDLogger>
-
-+ (instancetype)sharedInstance;
-
-@end
-
-#pragma mark - Custom Logger
+#pragma mark - Trace Logger
 
 @interface CCDTraceLogFormatter : NSObject <DDLogFormatter>
 
