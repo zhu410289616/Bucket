@@ -6,7 +6,6 @@
 //
 
 #import "CCDPeerTalkServer.h"
-#import "CCDLogger.h"
 #import "CCDBucket.h"
 #import <KKConnectorServer/KKConnectorServer.h>
 
@@ -56,14 +55,14 @@ CCDBucketSubscriber
 
 - (void)logWith:(NSString *)tag log:(NSString *)log
 {
-    NSString *tempStr = [NSString stringWithFormat:@"[%@]%@", tag, log];
+    NSString *tempStr = [NSString stringWithFormat:@"[%@] %@", tag, log];
     NSData *body = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
     [[KKConnectorServer sharedInstance] sendFrameOfType:104 tag:1 withPayload:body];
 }
 
 - (void)trackWith:(NSString *)event params:(NSDictionary *)params
 {
-    NSString *tempStr = [NSString stringWithFormat:@"[%@]%@", event, params];
+    NSString *tempStr = [NSString stringWithFormat:@"[%@] %@", event, params];
     NSData *body = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
     [[KKConnectorServer sharedInstance] sendFrameOfType:104 tag:1 withPayload:body];
 }

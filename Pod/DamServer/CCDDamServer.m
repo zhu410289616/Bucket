@@ -186,7 +186,7 @@ CCDBucketSubscriber
 
 - (void)transport:(GCDWebServerConnection *)transport received:(GCDWebSocketMessage)msg
 {
-    DDLogDebug(@"[%d]: %@", msg.header.opcode, msg.body.payload);
+    DDLogDebug(@"[received] opcode: %d, payload: %@", msg.header.opcode, msg.body.payload);
     
 #ifdef DEBUG
     GCDWebSocketServerConnection *connection = nil;

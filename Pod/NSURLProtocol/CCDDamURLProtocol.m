@@ -8,7 +8,7 @@
 #import "CCDDamURLProtocol.h"
 #import "CCDDamServer.h"
 #import "NSURLRequest+CCDDam.h"
-#import "CCDLogger.h"
+#import "CCDBucket.h"
 
 @interface CCDDamURLProtocol () <NSURLSessionTaskDelegate>
 

@@ -40,7 +40,7 @@ void CCDLog(NSString *tag, NSString *log)
         [_dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4]; // 10.4+ style
         [_dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
         [_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-        [_dateFormatter setDateFormat:@"[yyyy/MM/dd HH:mm:ss:SSS]"];
+        [_dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm:ss:SSS"];
     }
     return self;
 }
@@ -48,7 +48,7 @@ void CCDLog(NSString *tag, NSString *log)
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
     NSString *dateAndTime = [_dateFormatter stringFromDate:logMessage->_timestamp];
-    return [NSString stringWithFormat:@"%@ %@", dateAndTime, logMessage->_message];
+    return [NSString stringWithFormat:@"[%@] %@", dateAndTime, logMessage->_message];
 }
 
 @end
