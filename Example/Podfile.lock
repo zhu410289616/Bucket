@@ -1,0 +1,107 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - Bucket/Core (0.0.1):
+    - CocoaLumberjack
+  - Bucket/DamServer (0.0.1):
+    - Bucket/NSURLProtocol
+    - GCDWebServer/WebSocket
+  - Bucket/NSURLProtocol (0.0.1):
+    - Bucket/Core
+  - CocoaLumberjack (3.7.4):
+    - CocoaLumberjack/Core (= 3.7.4)
+  - CocoaLumberjack/Core (3.7.4)
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
+  - GCDWebServer/WebSocket (3.5.4):
+    - GCDWebServer/Core
+  - libextobjc (0.6):
+    - libextobjc/EXTADT (= 0.6)
+    - libextobjc/EXTConcreteProtocol (= 0.6)
+    - libextobjc/EXTKeyPathCoding (= 0.6)
+    - libextobjc/EXTNil (= 0.6)
+    - libextobjc/EXTSafeCategory (= 0.6)
+    - libextobjc/EXTScope (= 0.6)
+    - libextobjc/EXTSelectorChecking (= 0.6)
+    - libextobjc/EXTSynthesize (= 0.6)
+    - "libextobjc/NSInvocation+EXT (= 0.6)"
+    - "libextobjc/NSMethodSignature+EXT (= 0.6)"
+    - libextobjc/RuntimeExtensions (= 0.6)
+    - libextobjc/UmbrellaHeader (= 0.6)
+  - libextobjc/EXTADT (0.6):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTConcreteProtocol (0.6):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTKeyPathCoding (0.6):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTNil (0.6):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSafeCategory (0.6):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.6):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSelectorChecking (0.6):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSynthesize (0.6):
+    - libextobjc/RuntimeExtensions
+  - "libextobjc/NSInvocation+EXT (0.6)":
+    - libextobjc/RuntimeExtensions
+  - "libextobjc/NSMethodSignature+EXT (0.6)":
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.6)
+  - libextobjc/UmbrellaHeader (0.6)
+  - SocketRocket (0.5.1)
+
+DEPENDENCIES:
+  - AFNetworking (~> 4.0.1)
+  - Bucket/Core (from `../Bucket.podspec`)
+  - Bucket/DamServer (from `../Bucket.podspec`)
+  - CocoaLumberjack (~> 3.7.4)
+  - GCDWebServer (from `https://github.com/zhu410289616/GCDWebServer.git`, branch `develop`)
+  - libextobjc (~> 0.6)
+  - SocketRocket (= 0.5.1)
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - CocoaLumberjack
+    - libextobjc
+    - SocketRocket
+
+EXTERNAL SOURCES:
+  Bucket:
+    :path: "../Bucket.podspec"
+  GCDWebServer:
+    :branch: develop
+    :git: https://github.com/zhu410289616/GCDWebServer.git
+
+CHECKOUT OPTIONS:
+  GCDWebServer:
+    :commit: 0f5f345026da18abccc7d6433e2c4e73415e5bbd
+    :git: https://github.com/zhu410289616/GCDWebServer.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  Bucket: 8473a9ea21f70cc9e4d53c9ef3c49774b744a2f6
+  CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
+  GCDWebServer: 2eb4dcab769d03bd0fd1a8ff378ed75f7c56cf18
+  libextobjc: aed8b7d2b07f511c1a7ecaacb33ea03e327c69b7
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+
+PODFILE CHECKSUM: a586f089c1d8e83f89d4c0699762d55850ebad08
+
+COCOAPODS: 1.11.3
