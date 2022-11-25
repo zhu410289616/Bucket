@@ -21,32 +21,26 @@ Pod::Spec.new do |spec|
     cs.dependency "CocoaLumberjack"
   end
   
-  spec.subspec "MarsLogger" do |cs|
-    cs.source_files = "Pod/MarsLogger/**/*"
-    cs.vendored_frameworks = [
-      "Pod/MarsLogger/Frameworks/mars.framework"
-    ]
-    cs.frameworks = "SystemConfiguration", "CoreTelephony"
-    cs.libraries = "z", "resolv.9", "stdc++"
-  end
+#  spec.subspec "MarsLogger" do |cs|
+#    cs.source_files = "Pod/MarsLogger/**/*"
+#    cs.vendored_frameworks = [
+#      "Pod/MarsLogger/mars.framework"
+#    ]
+#    cs.frameworks = "SystemConfiguration", "CoreTelephony"
+#    cs.libraries = "z", "resolv.9", "stdc++"
+#  end
   
-  spec.subspec "NSURLProtocol" do |cs|
-    cs.source_files = "Pod/NSURLProtocol/**/*.{h,m,mm}"
-    cs.dependency "Bucket/Core"
-  end
-  
-  spec.subspec "DamServer" do |cs|
-    cs.source_files = "Pod/DamServer/**/*.{h,m,mm}"
-    cs.resource = "Pod/DamServer/**/*.bundle"
-    cs.dependency "Bucket/NSURLProtocol"
-    cs.dependency "GCDWebServer/WebSocket"
-  end
-  
-  ### usbmux
-  ### https://github.com/zhu410289616/KKConnector
-  spec.subspec "PeerTalkServer" do |cs|
-    cs.source_files = "Pod/PeerTalkServer/**/*.{h,m,mm}"
-    cs.dependency "KKConnectorServer"
-  end
+#  spec.subspec "DamServer" do |cs|
+#    cs.source_files = "Pod/DamServer/**/*.{h,m,mm}"
+#    cs.resource = "Pod/DamServer/**/*.bundle"
+#    cs.dependency "GCDWebServer/WebSocket"
+#  end
+#
+#  ### usbmux
+#  ### https://github.com/zhu410289616/KKConnector
+#  spec.subspec "PeerTalkServer" do |cs|
+#    cs.source_files = "Pod/PeerTalkServer/**/*.{h,m,mm}"
+#    cs.dependency "KKConnectorServer"
+#  end
   
 end
