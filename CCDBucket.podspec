@@ -33,7 +33,7 @@ Pod::Spec.new do |spec|
   spec.subspec "DamServer" do |cs|
     cs.source_files = "Pod/DamServer/**/*.{h,m,mm}"
     cs.resource = "Pod/DamServer/**/*.bundle"
-    cs.dependency "GCDWebServer/WebSocket"
+    cs.dependency "GCDWebSocket"
   end
 
 #  ### usbmux

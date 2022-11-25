@@ -12,8 +12,8 @@
 #import "CCDLogger.h"
 #import "CCDBucket.h"
 #import <GCDWebServer/GCDWebServerPrivate.h>
-#import <GCDWebServer/GCDWebSocketServer.h>
-#import <GCDWebServer/GCDWebSocketServerConnection.h>
+#import <GCDWebSocket/GCDWebSocketServer.h>
+#import <GCDWebSocket/GCDWebSocketServerConnection.h>
 
 NSString * const kCCDDamURLProtocolHandledKey = @"kCCDDamURLProtocolHandledKey";
 

@@ -9,8 +9,8 @@
 //logger
 #import <CCDBucket/CCDLogger.h>
 //websocket server
-#import <GCDWebServer/GCDWebSocketEchoServer.h>
-#import <GCDWebServer/GCDWebSocketServerConnection.h>
+#import <GCDWebSocket/GCDWebSocketEchoServer.h>
+#import <GCDWebSocket/GCDWebSocketServerConnection.h>
 //websocket client
 #import <SocketRocket/SocketRocket.h>
 
