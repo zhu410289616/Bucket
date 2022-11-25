@@ -30,12 +30,12 @@ Pod::Spec.new do |spec|
 #    cs.libraries = "z", "resolv.9", "stdc++"
 #  end
   
-#  spec.subspec "DamServer" do |cs|
-#    cs.source_files = "Pod/DamServer/**/*.{h,m,mm}"
-#    cs.resource = "Pod/DamServer/**/*.bundle"
-#    cs.dependency "GCDWebServer/WebSocket"
-#  end
-#
+  spec.subspec "DamServer" do |cs|
+    cs.source_files = "Pod/DamServer/**/*.{h,m,mm}"
+    cs.resource = "Pod/DamServer/**/*.bundle"
+    cs.dependency "GCDWebServer/WebSocket"
+  end
+
 #  ### usbmux
 #  ### https://github.com/zhu410289616/KKConnector
 #  spec.subspec "PeerTalkServer" do |cs|

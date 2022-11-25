@@ -7,7 +7,7 @@
 
 #import "ViewController.h"
 //logger
-#import <Bucket/CCDLogger.h>
+#import <CCDBucket/CCDLogger.h>
 //websocket server
 #import <GCDWebServer/GCDWebSocketEchoServer.h>
 #import <GCDWebServer/GCDWebSocketServerConnection.h>

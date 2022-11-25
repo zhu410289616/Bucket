@@ -14,13 +14,10 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - Bucket/Core (0.0.1):
+  - CCDBucket/Core (0.0.2):
     - CocoaLumberjack
-  - Bucket/DamServer (0.0.1):
-    - Bucket/NSURLProtocol
+  - CCDBucket/DamServer (0.0.2):
     - GCDWebServer/WebSocket
-  - Bucket/NSURLProtocol (0.0.1):
-    - Bucket/Core
   - CocoaLumberjack (3.7.4):
     - CocoaLumberjack/Core (= 3.7.4)
   - CocoaLumberjack/Core (3.7.4)
@@ -68,8 +65,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 4.0.1)
-  - Bucket/Core (from `../Bucket.podspec`)
-  - Bucket/DamServer (from `../Bucket.podspec`)
+  - CCDBucket/Core (from `../CCDBucket.podspec`)
+  - CCDBucket/DamServer (from `../CCDBucket.podspec`)
   - CocoaLumberjack (~> 3.7.4)
   - GCDWebServer (from `https://github.com/zhu410289616/GCDWebServer.git`, branch `develop`)
   - libextobjc (~> 0.6)
@@ -83,8 +80,8 @@ SPEC REPOS:
     - SocketRocket
 
 EXTERNAL SOURCES:
-  Bucket:
-    :path: "../Bucket.podspec"
+  CCDBucket:
+    :path: "../CCDBucket.podspec"
   GCDWebServer:
     :branch: develop
     :git: https://github.com/zhu410289616/GCDWebServer.git
@@ -96,12 +93,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  Bucket: 8473a9ea21f70cc9e4d53c9ef3c49774b744a2f6
+  CCDBucket: 93d6930433e57044cf2a0c85b83a1deff8cc5446
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
   GCDWebServer: 2eb4dcab769d03bd0fd1a8ff378ed75f7c56cf18
   libextobjc: aed8b7d2b07f511c1a7ecaacb33ea03e327c69b7
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: a586f089c1d8e83f89d4c0699762d55850ebad08
+PODFILE CHECKSUM: 97b2fb4584fce02403ffb6ff89d1b71658886a2c
 
 COCOAPODS: 1.11.3

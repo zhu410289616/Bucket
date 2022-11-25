@@ -6,8 +6,8 @@
 //
 
 #import "AppDelegate.h"
-#import <Bucket/CCDLogger.h>
-#import <Bucket/CCDDamServer.h>
+#import <CCDBucket/CCDLogger.h>
+#import <CCDBucket/CCDDamServer.h>
 
 @interface AppDelegate ()
 

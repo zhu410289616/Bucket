@@ -5,7 +5,7 @@ target 'Example' do
   
   pod 'CocoaLumberjack', '~> 3.7.4'
   pod 'GCDWebServer', :git => 'https://github.com/zhu410289616/GCDWebServer.git', :branch => 'develop'
-  pod 'Bucket', :path => '../Bucket.podspec', :subspecs => ['Core', 'DamServer']
+  pod 'CCDBucket', :path => '../CCDBucket.podspec', :subspecs => ['Core', 'DamServer']
   
   pod 'libextobjc', '~> 0.6'
   pod 'AFNetworking', '~> 4.0.1'
