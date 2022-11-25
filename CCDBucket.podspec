@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 
-  spec.name         = "Bucket"
-  spec.version      = "0.0.1"
+  spec.name         = "CCDBucket"
+  spec.version      = "0.0.2"
   spec.summary      = "Bucket: 数据跟踪能力集合"
 
   spec.description  = <<-DESC
