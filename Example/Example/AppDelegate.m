@@ -33,6 +33,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self startDamServerForWebBrower];
+    return YES;
+}
+
+#pragma mark - dam server
+
+- (void)startDamServerForWebBrower
+{
     //dam server
     [[CCDDamServer sharedInstance] addHandlerWith:^BOOL(NSURLRequest *request) {
         if ([request.URL.absoluteString hasSuffix:@"test"]) {
@@ -43,9 +51,7 @@
     [[CCDDamServer sharedInstance] setEnabled:YES];
     [[CCDDamServer sharedInstance] start];
     DDLogInfo(@"[didFinishLaunchingWithOptions]: dam server init");
-    return YES;
 }
-
 
 #pragma mark - UISceneSession lifecycle
 

@@ -92,7 +92,7 @@
                 var logsElement = document.getElementById("logs");
                 logsElement.innerHTML += "<tr>" + logStr + "</tr>";
     <!--            自动滑到底部，用户操作时影响阅读-->
-    <!--            logsElement.lastElementChild.scrollIntoView();-->
+    <!--            logsElement.lastElementChild.scrollIntoView(false);-->
             };
             ws.onclose = function() {
                 var logsElement = document.getElementById("logs");

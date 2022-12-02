@@ -4,9 +4,9 @@ platform:ios,'9.0'
 target 'Example' do
   
   pod 'CocoaLumberjack', '~> 3.7.4'
-#  pod 'GCDWebServer', :git => 'https://github.com/zhu410289616/GCDWebServer.git', :branch => 'develop'
-  pod 'GCDWebSocket', :path => '../../GCDWebSocket/GCDWebSocket.podspec', :subspecs => ['Core', 'EchoServer']
   pod 'CCDBucket', :path => '../CCDBucket.podspec', :subspecs => ['Core', 'DamServer']
+  
+  pod 'GCDWebSocket', '~> 0.0.2', :subspecs => ['Core', 'EchoServer']
   
   pod 'libextobjc', '~> 0.6'
   pod 'AFNetworking', '~> 4.0.1'

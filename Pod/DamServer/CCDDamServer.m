@@ -170,10 +170,10 @@ CCDBucketSubscriber
 
 #pragma mark - GCDWebSocketServerTransport
 
-- (void)transportWillStart:(GCDWebServerConnection *)transport
+- (void)transportWillBegin:(GCDWebServerConnection *)connection
 {
-    if ([transport isKindOfClass:[GCDWebSocketServerConnection class]]) {
-        [self.logConnections addObject:transport];
+    if ([connection isKindOfClass:[GCDWebSocketServerConnection class]]) {
+        [self.logConnections addObject:connection];
     }
 }
 
@@ -184,22 +184,20 @@ CCDBucketSubscriber
     }
 }
 
-- (void)transport:(GCDWebServerConnection *)transport received:(GCDWebSocketMessage)msg
+- (void)transport:(GCDWebServerConnection *)connection received:(GCDWebSocketMessage)message
 {
-    DDLogDebug(@"[received] opcode: %d, payload: %@", msg.header.opcode, msg.body.payload);
-    
 #ifdef DEBUG
-    GCDWebSocketServerConnection *connection = nil;
-    if ([transport isKindOfClass:[GCDWebSocketServerConnection class]]) {
-        connection = (GCDWebSocketServerConnection *)transport;
+    GCDWebSocketServerConnection *con = nil;
+    if ([connection isKindOfClass:[GCDWebSocketServerConnection class]]) {
+        con = (GCDWebSocketServerConnection *)connection;
     }
     
     //echo message
     GCDWebSocketMessage echoMessage;
     echoMessage.header.fin = YES;
     echoMessage.header.opcode = GCDWebSocketOpcodeTextFrame;
-    echoMessage.body.payload = msg.body.payload;
-    [connection sendMessage:echoMessage];
+    echoMessage.body.payload = message.body.payload;
+    [con sendMessage:echoMessage];
 #endif
 }
 
@@ -212,11 +210,11 @@ CCDBucketSubscriber
     NSArray<GCDWebSocketServerConnection *> *cons = [self.logConnections copy];
     [cons enumerateObjectsUsingBlock:^(GCDWebSocketServerConnection * _Nonnull connection, NSUInteger idx, BOOL * _Nonnull stop) {
         //log message
-        GCDWebSocketMessage echoMessage;
-        echoMessage.header.fin = YES;
-        echoMessage.header.opcode = GCDWebSocketOpcodeTextFrame;
-        echoMessage.body.payload = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
-        [connection sendMessage:echoMessage];
+        GCDWebSocketMessage message;
+        message.header.fin = YES;
+        message.header.opcode = GCDWebSocketOpcodeTextFrame;
+        message.body.payload = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
+        [connection sendMessage:message];
     }];
 }
 
@@ -227,11 +225,11 @@ CCDBucketSubscriber
     NSArray<GCDWebSocketServerConnection *> *cons = [self.logConnections copy];
     [cons enumerateObjectsUsingBlock:^(GCDWebSocketServerConnection * _Nonnull connection, NSUInteger idx, BOOL * _Nonnull stop) {
         //log message
-        GCDWebSocketMessage echoMessage;
-        echoMessage.header.fin = YES;
-        echoMessage.header.opcode = GCDWebSocketOpcodeTextFrame;
-        echoMessage.body.payload = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
-        [connection sendMessage:echoMessage];
+        GCDWebSocketMessage message;
+        message.header.fin = YES;
+        message.header.opcode = GCDWebSocketOpcodeTextFrame;
+        message.body.payload = [tempStr dataUsingEncoding:NSUTF8StringEncoding];
+        [connection sendMessage:message];
     }];
 }
 
