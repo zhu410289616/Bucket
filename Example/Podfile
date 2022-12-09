@@ -11,6 +11,7 @@ target 'Example' do
   pod 'libextobjc', '~> 0.6'
   pod 'AFNetworking', '~> 4.0.1'
   pod 'SocketRocket', '0.5.1'
+  pod 'Masonry', '~> 1.1.0'
   
 end
 

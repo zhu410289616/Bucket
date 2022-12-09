@@ -77,6 +77,11 @@ CCDBucketSubscriber
 
 #pragma mark - getter & setter
 
+- (BOOL)isRunning
+{
+    return [self.webServer isRunning];
+}
+
 - (void)setEnabled:(BOOL)enabled
 {
     @synchronized (self) {
@@ -156,6 +161,7 @@ CCDBucketSubscriber
 - (void)webServerDidStart:(GCDWebServer*)server
 {
     DDLogDebug(@"[WebServer] start: %@", server.serverURL);
+    self.serverURL = server.serverURL;
 }
 
 - (void)webServerDidCompleteBonjourRegistration:(GCDWebServer*)server

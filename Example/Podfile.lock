@@ -63,6 +63,7 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.6)
   - libextobjc/UmbrellaHeader (0.6)
+  - Masonry (1.1.0)
   - SocketRocket (0.5.1)
 
 DEPENDENCIES:
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - GCDWebSocket/Core (~> 0.0.2)
   - GCDWebSocket/EchoServer (~> 0.0.2)
   - libextobjc (~> 0.6)
+  - Masonry (~> 1.1.0)
   - SocketRocket (= 0.5.1)
 
 SPEC REPOS:
@@ -82,6 +84,7 @@ SPEC REPOS:
     - GCDWebServer
     - GCDWebSocket
     - libextobjc
+    - Masonry
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -90,13 +93,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  CCDBucket: 546251f801e8f51c8a39febf1d13ca2d3353b5e8
+  CCDBucket: 3b65bb6ea6b6d8b1314974adb1280b075714076a
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   GCDWebSocket: 584a6a7421ffc2d8a970553f2cb311dfef8ccd54
   libextobjc: aed8b7d2b07f511c1a7ecaacb33ea03e327c69b7
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
 
-PODFILE CHECKSUM: b9af724a68d195d54e22fa05ce03afa07035cb88
+PODFILE CHECKSUM: cb6a7ad588e235429927e437b2d2a41a7e291e81
 
 COCOAPODS: 1.11.3

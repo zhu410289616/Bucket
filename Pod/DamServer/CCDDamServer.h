@@ -23,6 +23,10 @@ typedef BOOL(^CCDDamHttpInterruptBlock)(NSURLRequest *request);
 
 /// 本地代理服务器端口，默认 20229；
 @property (nonatomic, assign) NSInteger port;
+/// web log server 是否运行中
+@property (nonatomic, assign, readonly) BOOL isRunning;
+/// server URL
+@property (nonatomic, strong) NSURL *serverURL;
 
 + (instancetype)sharedInstance;
 

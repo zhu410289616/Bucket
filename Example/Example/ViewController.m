@@ -6,8 +6,10 @@
 //
 
 #import "ViewController.h"
+#import <Masonry/Masonry.h>
 //logger
 #import <CCDBucket/CCDLogger.h>
+#import <CCDBucket/CCDDamServer.h>
 //websocket server
 #import <GCDWebSocket/GCDWebSocketServer.h>
 #import <GCDWebSocket/GCDWebSocketServerConnection.h>
@@ -27,6 +29,9 @@ SRWebSocketDelegate
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
+@property (nonatomic, strong) UISwitch *webLogSwitch;
+@property (nonatomic, strong) UILabel *webLogLabel;
+
 @property (nonatomic, strong) UILabel *statusLabel;
 @property (nonatomic, strong) UIButton *statusButton;
 @property (nonatomic, strong) UITextView *textView;
@@ -44,13 +49,35 @@ SRWebSocketDelegate
     [_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     [_dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm:ss:SSS"];
     
-    CGFloat width = CGRectGetWidth(self.view.frame);
-    CGFloat height = CGRectGetHeight(self.view.frame);
+    self.webLogSwitch = [[UISwitch alloc] init];
+    [self.webLogSwitch addTarget:self action:@selector(doSwitchAction) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.webLogSwitch];
+    [self.webLogSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.view).offset(20);
+        make.top.equalTo(self.view).offset(80);
+    }];
+    
+    self.webLogLabel = [[UILabel alloc] init];
+    self.webLogLabel.textColor = [UIColor blueColor];
+    self.webLogLabel.font = [UIFont systemFontOfSize:12];
+    [self.view addSubview:self.webLogLabel];
+    [self.webLogLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.view).offset(20);
+        make.trailing.equalTo(self.view).offset(-20);
+        make.top.equalTo(self.webLogSwitch.mas_bottom).offset(6);
+        make.height.equalTo(@40);
+    }];
     
     self.statusLabel = [[UILabel alloc] init];
-    self.statusLabel.frame = CGRectMake(20, 100, width - 20 * 2, 40);
     self.statusLabel.textColor = [UIColor blueColor];
+    self.statusLabel.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:self.statusLabel];
+    [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.view).offset(20);
+        make.trailing.equalTo(self.view).offset(-20);
+        make.top.equalTo(self.webLogLabel.mas_bottom).offset(6);
+        make.height.equalTo(@60);
+    }];
     
     self.statusButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.statusButton.frame = CGRectMake(20, 160, 180, 40);
@@ -58,13 +85,24 @@ SRWebSocketDelegate
     [self.statusButton setTitle:@"start websocket" forState:UIControlStateNormal];
     [self.statusButton addTarget:self action:@selector(startOrStopClient) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.statusButton];
+    [self.statusButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.view).offset(20);
+        make.top.equalTo(self.statusLabel.mas_bottom).offset(6);
+        make.size.mas_equalTo(CGSizeMake(180, 40));
+    }];
     
     self.textView = [[UITextView alloc] init];
-    self.textView.frame = CGRectMake(20, 220, width - 20 * 2, height - 350);
     self.textView.layer.borderColor = [UIColor blueColor].CGColor;
     self.textView.layer.borderWidth = 1.0f;
     self.textView.font = [UIFont systemFontOfSize:14.0f];
     [self.view addSubview:self.textView];
+    [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.view).offset(20);
+        make.trailing.equalTo(self.view).offset(-20);
+        make.top.equalTo(self.statusButton.mas_bottom).offset(6);
+        make.bottom.equalTo(self.view).offset(-100);
+    }];
+    
 }
 
 - (void)viewDidLoad {
@@ -74,10 +112,27 @@ SRWebSocketDelegate
     [self startEchoServer];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.webLogSwitch setOn:[CCDDamServer sharedInstance].isRunning animated:YES];
+    self.webLogLabel.text = [NSString stringWithFormat:@"web log address is %@log", [CCDDamServer sharedInstance].serverURL];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
     [self stopHeartbeatTimer];
+}
+
+- (void)doSwitchAction
+{
+    if ([CCDDamServer sharedInstance].isRunning) {
+        [[CCDDamServer sharedInstance] stop];
+    } else {
+        [[CCDDamServer sharedInstance] start];
+        self.webLogLabel.text = [NSString stringWithFormat:@"web log address is %@/log", [CCDDamServer sharedInstance].serverURL];
+    }
 }
 
 - (void)startOrStopClient
@@ -187,7 +242,7 @@ SRWebSocketDelegate
 - (void)webServerDidStart:(GCDWebServer*)server
 {
     DDLogDebug(@"[WebServer] start: %@", server.serverURL);
-    self.statusLabel.text = [NSString stringWithFormat:@"ws://%@:%@", server.serverURL.host, server.serverURL.port];
+    self.statusLabel.text = [NSString stringWithFormat:@"websocket server address is ws://%@:%@", server.serverURL.host, server.serverURL.port];
     NSString *text = [NSString stringWithFormat:@"[WebServer] start: %@\n\n", server.serverURL];
     [self.textView insertText:text];
     [self.textView scrollRangeToVisible:NSMakeRange(-1, 1)];
