@@ -92,7 +92,7 @@ EXTERNAL SOURCES:
     :path: "../CCDBucket.podspec"
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   CCDBucket: 3b65bb6ea6b6d8b1314974adb1280b075714076a
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
