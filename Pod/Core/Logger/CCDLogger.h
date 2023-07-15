@@ -11,8 +11,6 @@
 // Log levels: off, error, warn, info, verbose
 static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 
-FOUNDATION_EXPORT void CCDLog(NSString *tag, NSString *log);
-
 @interface CCDLogger : NSObject
 
 @end

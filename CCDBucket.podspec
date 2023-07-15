@@ -14,11 +14,15 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "9.0"
   spec.source       = { :git => "https://github.com/zhu410289616/Bucket.git", :tag => "#{spec.version}" }
   
-  spec.default_subspec = "Core"
+  spec.default_subspec = "Core", "UIKit"
   
   spec.subspec "Core" do |cs|
     cs.source_files = "Pod/Core/**/*.{h,m,mm}"
     cs.dependency "CocoaLumberjack"
+  end
+  
+  spec.subspec "UIKit" do |cs|
+    cs.source_files = "Pod/UIKit/**/*.{h,m,mm}"
   end
   
 #  spec.subspec "MarsLogger" do |cs|

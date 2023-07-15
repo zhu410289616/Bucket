@@ -8,11 +8,6 @@
 #import "CCDLogger.h"
 #import "CCDBucket.h"
 
-void CCDLog(NSString *tag, NSString *log)
-{
-    DDLogVerbose(@"[%@]%@", tag, log);
-}
-
 @interface CCDLogger ()
 
 @end

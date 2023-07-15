@@ -7,6 +7,16 @@
 
 #import "CCDBucket.h"
 
+void CCDBucketLog(NSString *tag, NSString *log)
+{
+    DDLogInfo(@"[%@]%@", tag, log);
+}
+
+void CCDBucketTrack(NSString *event, NSDictionary *params)
+{
+    [[CCDBucket sharedInstance] trackWith:event params:params];
+}
+
 @interface CCDBucket ()
 
 @property (nonatomic,   copy) NSString *workQueueLabel;

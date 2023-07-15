@@ -9,6 +9,13 @@
 #import "CCDLogger.h"
 #import "CCDTracker.h"
 
+#pragma mark - C 方法
+
+FOUNDATION_EXPORT void CCDBucketLog(NSString *tag, NSString *log);
+FOUNDATION_EXPORT void CCDBucketTrack(NSString *event, NSDictionary *params);
+
+#pragma mark -
+
 @protocol CCDBucketSubscriber <NSObject>
 
 - (void)logWith:(NSString *)tag log:(NSString *)log;
