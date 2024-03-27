@@ -3,15 +3,15 @@ platform:ios,'9.0'
 
 target 'Example' do
   
-  pod 'CocoaLumberjack', '~> 3.7.4'
-  pod 'CCDBucket', :path => '../CCDBucket.podspec', :subspecs => ['Core', 'DamServer']
-  
-  pod 'GCDWebSocket', '~> 0.0.2', :subspecs => ['Core', 'EchoServer']
-  
   pod 'libextobjc', '~> 0.6'
   pod 'AFNetworking', '~> 4.0.1'
-  pod 'SocketRocket', '0.5.1'
+  pod 'CocoaLumberjack', '~> 3.7.4'
+  pod 'CCDBucket', :path => '../CCDBucket.podspec', :subspecs => ['Core', 'DamServer']
+  pod 'GCDWebSocket', '~> 0.0.2', :subspecs => ['Core', 'EchoServer']
   pod 'Masonry', '~> 1.1.0'
+  ### 录屏
+#  pod 'ScreenRecorderKit', :path => '../../ScreenRecorderKit/ScreenRecorderKit.podspec'
+  pod 'SocketRocket', '0.5.1'
   
 end
 
